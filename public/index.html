@@ -17,14 +17,14 @@
     </ul>
     
 </body>
-<script src="http://localhost:8080/socket.io/socket.io.js"></script>
+<script src="https://cdn.socket.io/4.1.2/socket.io.min.js" integrity="sha384-toS6mmwu70G0fw54EGlWWeA4z3dyJ+dlXBtSURSKN4vyRFOcxd3Bzjj/AoOwY+Rg" crossorigin="anonymous"></script>
 <script>
 
  const formulario=document.querySelector('#mformulario');
  const mensages=document.querySelector('#mensage');
  const txtmensages=document.querySelector('#mismensages');
 
-  const socket= io('http://localhost:8080/');
+  const socket= io('https://socket-io-ronal.herokuapp.com/');
   /*
   socket.on('mensaje-benvenida',( data )=> {
       console.log(data);
