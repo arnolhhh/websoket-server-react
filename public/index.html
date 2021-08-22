@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="" id="mformulario">
+        <input type="text" id="mensage"/>
+        <button type="submit" id="btnenviar">enviar</button>
+    </form>
+    <hr>
+    <ul id="mismensages">
+
+    </ul>
+    
+</body>
+<script src="http://localhost:8080/socket.io/socket.io.js"></script>
+<script>
+
+ const formulario=document.querySelector('#mformulario');
+ const mensages=document.querySelector('#mensage');
+ const txtmensages=document.querySelector('#mismensages');
+
+  const socket= io('http://localhost:8080/');
+  /*
+  socket.on('mensaje-benvenida',( data )=> {
+      console.log(data);
+  });
+
+  setTimeout( ()=>{
+      socket.emit('mensage-cliente',{msg:'hola',nombre:'jorge'});
+  },2000);
+  */
+  formulario.addEventListener('submit',(ev) => {
+     ev.preventDefault();
+     const nuevomsg=mensages.value;
+     console.log(nuevomsg);
+
+     socket.emit('mensaje-to-server',{text:nuevomsg});
+ });
+
+ socket.on('mensaje-from-server',( data )=> {
+      console.log(data);
+      txtmensages.innerHTML+='<li>'+data.text+'</li>';
+  });
+
+
+
+</script>
+</html>
